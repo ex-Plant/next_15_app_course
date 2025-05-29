@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CommonReactMistakes } from "@/app/components/3_common_react_mistakes/CommonReactMistakes";
+import { FramerMotionNavBar } from "@/app/components/4_framer_motion/FramerMotionNavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <FramerMotionNavBar />
+        asdfs
         {children}
       </body>
     </html>
