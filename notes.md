@@ -23,19 +23,46 @@ const value = e.target.value
 }
 `
 
-
-
-- **mounting** 
+- **mounting**
 - adding component to the DOM
 - unmounting is the opposite
 
 UseEffect runs when the component mounts and unmounts or whenever the dependency changes
 
-cleanup function runs on unmount so that we can get rid of all the effects running in the background - we don't want 
-them running when the component is not in the DOM anymore 
+cleanup function runs on unmount so that we can get rid of all the effects running in the background - we don't want
+them running when the component is not in the DOM anymore
 
-Lets say we are doing something like setting an interval 
+Lets say we are doing something like setting an interval
 
-*usePathname*
-- from next/navigation 
+_usePathname_
+
+- from next/navigation
 - use to get the current path
+
+**animated scrollbar**
+`
+/_ SCROLLBAR STYLING _/
+/_ Chrome, Edge, and Safari _/
+::-webkit-scrollbar {
+width: 40px;
+}
+
+::-webkit-scrollbar-track {
+background: #0f1015;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+/_ Firefox _/
+
+- {
+  scrollbar-width: thin;
+  scrollbar-color: #0f1015 rgba(255, 255, 255, 0.1);
+  }
+  `
