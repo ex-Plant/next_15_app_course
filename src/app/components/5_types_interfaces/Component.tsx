@@ -40,6 +40,15 @@ class Person implements PersonT {
     this.name = name;
     this.age = age; // ts error
   }
+  get () {
+
+  }
+  set() {
+
+  }
+  printPerson() {
+    console.log(`ha ha ha `)
+  }
 }
 
 class Person2 implements PersonI {
@@ -53,6 +62,6 @@ class Person2 implements PersonI {
   }
 }
 
-export const C = () => {
+export const Component = () => {
   return <>client_server</>;
 };

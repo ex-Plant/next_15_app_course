@@ -66,3 +66,259 @@ background-color: rgba(255, 255, 255, 0.2);
   scrollbar-color: #0f1015 rgba(255, 255, 255, 0.1);
   }
   `
+
+
+**slice substring**
+very similar
+const uppercase = smallCase[0].toUpperCase() + smallCase.substring(1);
+console.log(smallCase);
+console.log(uppercase);
+const uppercase2 = smallCase.charAt(0).toUpperCase() + smallCase.slice(1)
+console.log(smallCase);
+console.log(uppercase2);
+
+1. Handling of Negative Indexes
+slice(start, end): Supports negative indexes (counts from the end).
+Example: "hello".slice(-2) → "lo"
+substring(start, end): Treats negative indexes as 0.
+Example: "hello".substring(-2) → "hello"
+2. Order of Arguments
+   slice(start, end): If start > end, returns an empty string.
+   "hello".slice(3, 1) → ""
+   substring(start, end): If start > end, it swaps them.
+   "hello".substring(3, 1) → "el"
+
+
+**types**
+- file with common types can be added to lib/types
+
+
+**@/import**
+tsconfig.json 
+paths - default to src
+
+
+**flex-1**
+
+flex-1
+This is a utility (e.g., in Tailwind CSS) that applies:
+
+css
+CopyInsert
+flex: 1 1 0%;
+The element will grow to fill available space in a flex container.
+It shares space equally with other items using flex-1.
+basis-80
+This sets the flex-basis property:
+
+css
+CopyInsert
+flex-basis: 20rem; /* in Tailwind, 80 = 20rem = 320px */
+This defines the initial main size of a flex item before it grows or shrinks.
+The item will start at 20rem wide (if horizontal flex) or tall (if vertical flex).
+In summary:
+
+flex-1 makes an item flexible and able to grow/shrink.
+basis-80 sets its starting size to 20rem.
+You can use both together to control both flexibility and initial size in layouts.
+
+
+ok and flex 1 means grow true shrnik true basis 0
+
+
+**basis-80**
+In Tailwind, 80 refers to a spacing scale value, where 80 equals 20rem (which is 320px).
+
+
+flex-0
+flex: 0 0 auto;
+
+const smallCase = "smallCase";
+console.log(smallCase);
+
+const uppercase = smallCase[0].toUpperCase() + smallCase.substring(1);
+console.log(smallCase);
+console.log(uppercase);
+const uppercase2 = smallCase.charAt(0).toUpperCase() + smallCase.slice(1)
+console.log(smallCase);
+console.log(uppercase2);
+
+
+const stringToBeSliced = 'stringToBerSliced'
+const sliceString = stringToBeSliced.slice(2, 3)
+console.log(sliceString);
+
+
+
+export  function cn(...classes:[]) {
+// clsx przyjmuje stringi i obiekty, merguje w stringa a twMerge rozwizuje konflikty
+// twMerge(clsx(classes))
+}
+
+
+function test(...arg: any) {
+console.log(arg);
+console.log(arguments);
+}
+
+test(1, 2, 3)
+// e spread syntax (...) before the parameter name classes makes it a "rest parameter". This means:
+//
+//   You can pass any number of arguments to the function.
+// All the arguments will be collected into a single array called classes.
+//   For example:
+// cn('foo', 'bar', 'baz');
+// Inside the function: classes = ['foo', 'bar', 'baz']
+
+// So, ...classes allows the function to accept any number of arguments and access them as an array inside the function.
+
+
+**fancy hover effect**
+- active happens when you click an image as in the drag event or something like that
+
+`hover:scale-110 active:scale-[1.02] transition overflow hidden `
+
+
+**fancy image background **
+blur original image , low quality 
+blur-3xl 
+sizes
+(max-width: 1280px: 100vw, 1280px)
+
+
+**Client-Side Cache** 
+- stores RSC payload after navigating to some page and going back - data for that page is already rendered and ready
+- 
+
+
+**sleep**
+
+**loading**
+- equivalent of suspense in react
+
+
+**skeleton component**
+
+**Array.from({length: 6)}.map(() => {})**
+**Fetching data on component level with suspense wrapper*
+- avoid blocking the whole page when fetching data - you can show some parts of the UI not needing fetched data and 
+  only supsened components with dynamic data
+
+**Dynamic metadata**
+- you have access to params in generateMetadata function 
+`export const generateMetadata({params}): Metadata  {}`
+- you can also fetch data in generateMetadata and use this data in there 🤔
+- since there is a fetch request memoization we do not have to worry about refetching data in generateMetadata
+- memoization last for the duration of the render pass -
+  "The cache lasts the lifetime of a server request until the React component tree has finished rendering."
+  When a server receives a request to render a page, it may fetch data (e.g., with fetch()).
+  React (and Next.js) will cache the results of these fetches for the duration of that single server request.
+  This cache is only valid while the server is building the React component tree for that request.
+  Once the rendering is done and the response is sent to the client, the cache is discarded.
+  If a new request comes in, a new cache is created for that request.
+  A user visits or reloads a page that is rendered on the server (SSR/Server Components).
+  The client navigates to a new page that requires server-side rendering (e.g., via Next.js app router navigation).
+  An API route or server function is called that triggers a new server-side render.
+  If a site is static (using Static Site Generation, SSG, in Next.js or similar frameworks):
+
+The page is rendered on the server only during build time (when you run next build or the equivalent build command).
+The HTML (and any data fetched during build) is generated once, then saved as static files.
+When a user visits the site, the server (or CDN) just serves these pre-built static files—no server-side rendering happens at request time.
+The fetch cache/memoization applies only during the build process, not at runtime.
+Summary:
+For static pages, server rendering (and fetch memoization) only happens at build time. All users get the same pre-rendered HTML until you rebuild the site.
+
+Feedback submitted
+Me
+
+Ok if the page is dynamic this server pass will happen on revalidation
+Or if it is fully dynamic than it will happen every time user navigates to any page
+
+Revert
+You are correct!
+
+If the page is dynamic with revalidation (using revalidate or ISR in Next.js):
+The server render (server pass) happens:
+At build time (for the initial static generation).
+Again, whenever the revalidation interval expires and a new request comes in (the page is regenerated on the server and the cache is updated).
+If the page is fully dynamic (e.g., dynamic = "force-dynamic" in Next.js):
+The server render happens every time a user requests or navigates to that page.
+There is no static cache; each request triggers a fresh server-side render and fetch.
+
+
+**REQUEST MEMOIZATION**
+Memoization only applies to the GET method in fetch requests, other methods, such as POST and DELETE, are not memoized. This default behavior is a React optimization and we do not recommend opting out of it.
+
+
+
+
+
+
+
+**Abort controller**
+-If you want to abort fetch for some reason
+import { useEffect, useState } from "react";
+
+function useFetchData(url) {
+const [data, setData] = useState(null);
+const [controller, setController] = useState(null);
+
+const refetch = () => {
+// Abort previous fetch if it exists
+if (controller) controller.abort();
+
+    const newController = new AbortContr();
+    setController(newController);
+
+    fetch(url, { signal: newController.signal })
+      .then(res => res.json())
+      .then(setData)
+      .catch(err => {
+        if (err.name !== "AbortError") throw err;
+      });
+};
+
+useEffect(() => {
+refetch();
+// Cleanup on unmount
+return () => controller && controller.abort();
+// eslint-disable-next-line
+}, [url]);
+
+return { data, refetch }; 
+}
+
+
+
+**CLEANUP WITH ABORT CONTROLLER**
+// with abort controller
+useEffect(() => {
+const controller = new AbortController();
+const signal = controller.signal;
+
+    function handleScroll() {
+      console.log(`scroll...`);
+    }
+
+    function handleClick() {
+      console.log("click...");
+    }
+
+    function dragstart() {
+      console.log("dragstart...");
+    }
+
+    document.addEventListener(`scroll`, () => handleScroll, {
+      signal,
+    });
+    document.addEventListener(`click`, () => handleClick, {
+      signal,
+    });
+    document.addEventListener(`dragstart`, () => dragstart, {
+      signal,
+    });
+
+    return () => {
+      controller.abort();
+    };
+}, []);
