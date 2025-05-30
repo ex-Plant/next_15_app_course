@@ -44,47 +44,6 @@ this means @ will point to src catalogue
 "@/*": ["./src/*"]
 }
 
-**flex-1**
-flex-1
-This is a utility (e.g., in Tailwind CSS) that applies:
-
-css
-CopyInsert
-flex: 1 1 0%;
-The element will grow to fill available space in a flex container.
-It shares space equally with other items using flex-1.
-basis-80
-This sets the flex-basis property:
-
-flex-basis: 20rem; /_ in Tailwind, 80 = 20rem = 320px _/
-This defines the initial main size of a flex item before it grows or shrinks.
-The item will start at 20rem wide (if horizontal flex) or tall (if vertical flex).
-In summary:
-
-flex-1 makes an item flexible and able to grow/shrink.
-basis-80 sets its starting size to 20rem.
-You can use both together to control both flexibility and initial size in layouts.
-
-ok and flex 1 means grow true shrink true basis 0
-
-**basis-80**
-In Tailwind, 80 refers to a spacing scale value, where 80 equals 20rem (which is 320px).
-
-flex-0
-flex: 0 0 auto;
-
-**fancy hover effect**
-
-- active happens when you click an image as in the drag event or something like that
-
-`hover:scale-110 active:scale-[1.02] transition overflow hidden `
-
-**fancy image background **
-blur original image , low quality
-blur-3xl
-sizes
-(max-width: 1280px: 100vw, 1280px)
-
 **Client-Side Cache**
 
 - stores RSC payload after navigating to some page and going back - data for that page is already rendered and ready
