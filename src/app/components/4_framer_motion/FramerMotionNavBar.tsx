@@ -13,8 +13,8 @@ const routes = [
     route: "page1",
   },
   {
-    path: "/page2",
-    route: "page2",
+    path: "/animatedImages",
+    route: "animatedImages",
   },
 ];
 

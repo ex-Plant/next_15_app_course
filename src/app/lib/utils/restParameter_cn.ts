@@ -28,6 +28,6 @@ export function cnExpanded(...inputs: []) {
   return inputsWithResolvedClassConflicts;
 }
 
-export default function restParameter_cn(...inputs: unknown[]) {
+export default function cn(...inputs: unknown[]) {
   return twMerge(clsx(inputs));
 }

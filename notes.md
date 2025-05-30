@@ -9,11 +9,11 @@ you can add it at the layout level and tha overwrite it on the page level if you
 description
 
 **Dynamic metadata**
+
 - you have access to params in generateMetadata function
   `export const generateMetadata({params}): Metadata  {}`
 - you can also fetch data in generateMetadata and use this data in there 🤔
 - since there is a fetch request memoization we do not have to worry about refetching data in generateMetadata
-
 
 - **mounting**
 - adding component to the DOM
@@ -31,15 +31,18 @@ _usePathname_
 - from next/navigation
 - use to get the current path
 
-
 **types**
+
 - file with common types can be added to lib/types
 
-
 **@/import**
-tsconfig.json 
+tsconfig.json
 paths - default to src
 
+this means @ will point to src catalogue
+"paths": {
+"@/*": ["./src/*"]
+}
 
 **flex-1**
 flex-1
@@ -53,7 +56,7 @@ It shares space equally with other items using flex-1.
 basis-80
 This sets the flex-basis property:
 
-flex-basis: 20rem; /* in Tailwind, 80 = 20rem = 320px */
+flex-basis: 20rem; /_ in Tailwind, 80 = 20rem = 320px _/
 This defines the initial main size of a flex item before it grows or shrinks.
 The item will start at 20rem wide (if horizontal flex) or tall (if vertical flex).
 In summary:
@@ -64,51 +67,46 @@ You can use both together to control both flexibility and initial size in layout
 
 ok and flex 1 means grow true shrink true basis 0
 
-
 **basis-80**
 In Tailwind, 80 refers to a spacing scale value, where 80 equals 20rem (which is 320px).
 
 flex-0
 flex: 0 0 auto;
 
-
 **fancy hover effect**
+
 - active happens when you click an image as in the drag event or something like that
 
 `hover:scale-110 active:scale-[1.02] transition overflow hidden `
 
-
 **fancy image background **
-blur original image , low quality 
-blur-3xl 
+blur original image , low quality
+blur-3xl
 sizes
 (max-width: 1280px: 100vw, 1280px)
 
+**Client-Side Cache**
 
-**Client-Side Cache** 
 - stores RSC payload after navigating to some page and going back - data for that page is already rendered and ready
-- 
-
-
-**sleep**
+-
 
 **loading**
+
 - equivalent of suspense in react
 
-
 **skeleton component**
+- basically some divs with animate pulse
+
 
 **Array.from({length: 6)}.map(() => {})**
 
+\*_Fetching data on component level with suspense wrapper_
 
-
-**Fetching data on component level with suspense wrapper*
-- avoid blocking the whole page when fetching data - you can show some parts of the UI not needing fetched data and 
+- avoid blocking the whole page when fetching data - you can show some parts of the UI not needing fetched data and
   only supsened components with dynamic data
 
-
-
 **CACHING MEMOIZATION**
+
 - memoization last for the duration of the render pass -
   "The cache lasts the lifetime of a server request until the React component tree has finished rendering."
   When a server receives a request to render a page, it may fetch data (e.g., with fetch()).
