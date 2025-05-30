@@ -1,8 +1,44 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function Component(props) {
+  // **Abort controller**
+  //   -If you want to abort fetch for some reason
+
+  function useFetchData(url) {
+    const [data, setData] = useState(null);
+    const [controller, setController] = useState<AbortController | null>(null);
+
+    const refetch = () => {
+      // Abort previous fetch if it exists
+      if (controller) controller.abort();
+
+      const newController = new AbortController();
+      setController(newController);
+
+      fetch(url, { signal: newController.signal })
+        .then((res) => res.json())
+        .then(setData)
+        .catch((err) => {
+          if (err.name !== "AbortError") throw err;
+        });
+    };
+
+    useEffect(() => {
+        refetch();
+        // Cleanup on unmount
+        return () => {
+          if (controller) controller.abort();
+        };
+        // eslint-disable-next-line
+    }, [url]);
+
+
+
+    return { data, refetch };
+  }
+
   // how to clear multiple events before
   useEffect(() => {
     function handleScroll() {

@@ -46,7 +46,7 @@ class Person implements PersonT {
   set() {
 
   }
-  printPerson() {
+  printPerson() {a
     console.log(`ha ha ha `)
   }
 }
