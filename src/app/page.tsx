@@ -3,6 +3,7 @@ import { ServerComponent } from "@/app/components/1_client_server/ServerComponen
 import { ClientComponent } from "@/app/components/1_client_server/ClientComponent";
 import { CommonReactMistakes } from "@/app/components/3_common_react_mistakes/CommonReactMistakes";
 import { FramerMotionNavBar } from "@/app/components/4_framer_motion/FramerMotionNavBar";
+import Zod from "@/app/components/8_zod/Component";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       {/*</ClientWrapper>*/}
       {/*<ClientComponent />*/}
       {/*<CommonReactMistakes />*/}
+      <Zod />
     </div>
   );
 }

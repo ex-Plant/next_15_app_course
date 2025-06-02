@@ -10,10 +10,17 @@ datasource db {
 }
 
 model Users {
-  id       String  @id @default(cuid())
-  name     String
-  surname  String
-  age      Int
-  email    String  @unique
-  nickname String?
+  id            Int             @id @default(autoincrement())
+  name          String
+  nickname      String          @unique
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  HouseCleaning HouseCleaning[]
+}
+
+model HouseCleaning {
+  id              Int      @id @default(autoincrement())
+  cleaningDate    DateTime
+  cleanerNickname String
+  cleaner         Users    @relation(fields: [cleanerNickname], references: [nickname])
 }

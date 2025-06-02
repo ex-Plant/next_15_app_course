@@ -80,7 +80,8 @@ this means @ will point to src catalogue
 
 The page is rendered on the server only during build time (when you run next build or the equivalent build command).
 The HTML (and any data fetched during build) is generated once, then saved as static files.
-When a user visits the site, the server (or CDN) just serves these pre-built static files—no server-side rendering happens at request time.
+When a user visits the site, the server (or CDN) just serves these pre-built static files—no server-side  rendering 
+happens at request time.
 The fetch cache/memoization applies only during the build process, not at runtime.
 Summary:
 For static pages, server rendering (and fetch memoization) only happens at build time. All users get the same pre-rendered HTML until you rebuild the site.
@@ -97,3 +98,21 @@ Again, whenever the revalidation interval expires and a new request comes in (th
 If the page is fully dynamic (e.g., dynamic = "force-dynamic" in Next.js):
 The server render happens every time a user requests or navigates to that page.
 There is no static cache; each request triggers a fresh server-side render and fetch.
+
+
+
+- seed db
+
+
+
+- useSearchParams for client components
+- params, searchParams for async pages 
+
+
+**SUSPENSE**
+- add key to make it work on the same route
+
+
+**zod**
+- zod is not used only to validate forms - it can be also very useful to check if data coming from db or any other 
+  data source is keeping the correct structure
