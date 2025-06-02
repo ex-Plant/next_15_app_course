@@ -22,7 +22,7 @@ export function AnimatedImgFlexBasis() {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["0 0", "2 1"],
+    offset: ["end center", "end center"],
 
     //offset: [startOffset, endOffset]
     // first element - target
@@ -61,9 +61,9 @@ export function AnimatedImgFlexBasis() {
       style={{
         scale: scaleProgress,
       }}
-      initial={{
-        scale: scaleProgress,
-      }}
+      // initial={{
+      //   scale: scaleProgress,
+      // }}
       className={cn(
         ` border border-white relative aspect-square min-h-[200px]
          hover:scale-[105%] transition active:scale-[95%] w-full h-full
