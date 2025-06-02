@@ -1,22 +1,20 @@
-
-
 // *extracting a part of some type*
 const test = {
-  name: ``;
+  name: ``,
   data: {
-    name: ``
-  }
-}
+    name: ``,
+  },
+};
 
-type TestData = typeof test[`data`]
+type TestData = (typeof test)[`data`];
 
 // *Extending interface without extend*
 interface TestI {
-  name: string
+  name: string;
 }
 
 interface TestI {
-  age: number
+  age: number;
 }
 
 // Now interface TestI has both age and name
@@ -34,20 +32,18 @@ interface PersonI {
 
 class Person implements PersonT {
   name: string;
+  //@ts-expect-error
   age: string;
 
   constructor(name: string, age: number) {
     this.name = name;
+    //@ts-expect-error
     this.age = age; // ts error
   }
-  get () {
-
-  }
-  set() {
-
-  }
-  printPerson() {a
-    console.log(`ha ha ha `)
+  get() {}
+  set() {}
+  printPerson() {
+    console.log(`ha ha ha `);
   }
 }
 

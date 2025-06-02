@@ -41,21 +41,19 @@ paths - default to src
 
 this means @ will point to src catalogue
 "paths": {
-"@/*": ["./src/*"]
+"@/_": ["./src/_"]
 }
 
 **Client-Side Cache**
 
 - stores RSC payload after navigating to some page and going back - data for that page is already rendered and ready
--
-
-**loading**
+- **loading**
 
 - equivalent of suspense in react
 
 **skeleton component**
-- basically some divs with animate pulse
 
+- basically some divs with animate pulse
 
 **Array.from({length: 6)}.map(() => {})**
 
@@ -80,7 +78,7 @@ this means @ will point to src catalogue
 
 The page is rendered on the server only during build time (when you run next build or the equivalent build command).
 The HTML (and any data fetched during build) is generated once, then saved as static files.
-When a user visits the site, the server (or CDN) just serves these pre-built static files—no server-side  rendering 
+When a user visits the site, the server (or CDN) just serves these pre-built static files—no server-side rendering
 happens at request time.
 The fetch cache/memoization applies only during the build process, not at runtime.
 Summary:
@@ -99,20 +97,44 @@ If the page is fully dynamic (e.g., dynamic = "force-dynamic" in Next.js):
 The server render happens every time a user requests or navigates to that page.
 There is no static cache; each request triggers a fresh server-side render and fetch.
 
-
-
 - seed db
 
-
-
 - useSearchParams for client components
-- params, searchParams for async pages 
-
+- params, searchParams for async pages
 
 **SUSPENSE**
+
 - add key to make it work on the same route
 
-
 **zod**
-- zod is not used only to validate forms - it can be also very useful to check if data coming from db or any other 
+
+- zod is not used only to validate forms - it can be also very useful to check if data coming from db or any other
   data source is keeping the correct structure
+
+**dynamic vs static**
+
+- static - component run during the build - html is already there during the build it is not created on request
+- dynamic - rerendered on request
+- using some next.js features will automatically turn some pages into dynamic pages, for example using cookies,
+  search params, params etc. since these features are client side features
+- generate static params can make some of these dynamic pages static so that next.js can render them statically
+  during the build
+- generateStaticParams MUST return array of slug objects [{slug: "slug"}] - this way next js knows it needs to run
+  them during build and render them -`CLIENT COMPONENTS RUN ON THE SERVER ONCE - during build time`
+
+**PREFETCHING IN LINK COMPONENT**
+
+- on prod - not on dev! - next will prefetch data to components, pages when they are in view.
+- It will receive `REACT SERVER COMPONENT PAYLOAD` which is a result of rendering a server component and put it in the
+  client-side cache (`ROUTER CACHE`)
+
+**unstable_cache**
+- if we are not using fetch that is cached by default we need to do that ourselves
+- using unstable cache is caching data from data source for the duration a session - refresh will delete it
+
+
+**server security and server-only**
+- whenever there is some vulnerable users data that you do not want to leek to the client it is good idea to put them 
+  to a separate catalogue like server-utils etc. 
+- then you install a package called server-only and import it at the top of the file that you want to keep on the server
+- if you try to call this function from within server component this should throw an error 

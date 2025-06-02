@@ -30,7 +30,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[120vh] flex flex-col`}
       >
         <FramerMotionNavBar />
-        asdfs
         {children}
       </body>
     </html>
