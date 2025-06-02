@@ -138,3 +138,50 @@ There is no static cache; each request triggers a fresh server-side render and f
   to a separate catalogue like server-utils etc. 
 - then you install a package called server-only and import it at the top of the file that you want to keep on the server
 - if you try to call this function from within server component this should throw an error 
+
+
+**openGraph**
+- test if your page images shows up correctly on social media etc
+
+
+**server actions**
+- onSubmit - you can not do that in a server component!
+
+
+**useOptimistic**
+**useActionState**
+const [state, formAction] = useActionState(createTicket, initState);
+
+//
+// useEffect(() => {
+//   console.log(state, "state");
+//   if (state.success) {
+//     toast.success(`😎`);
+//     router.push(`/tickets`);
+//   }
+//   console.log(state, `🍆`);
+// }, [state]);
+
+
+**useTransition**
+const [isPending, startTransition] = useTransition();
+const router = useRouter();
+
+async function handleRegister(formData: FormData) {
+startTransition(async () => {
+const res = await registerUser(initState, formData);
+console.log(res, "res");
+
+      if (res.success === "ok") {
+        toast.success(`User registered 🚀`);
+        router.push(`/tickets`);
+      }
+      if (res.success === "failed") {
+        toast.error(`Something went wrong 🚨:` + res.message);
+      }
+    });
+}
+
+
+*useFormAction*
+- for actions outside forms like in buttons, stand alone inputs etc.
