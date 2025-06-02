@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CommonReactMistakes } from "@/app/components/3_common_react_mistakes/CommonReactMistakes";
 import { FramerMotionNavBar } from "@/app/components/4_framer_motion/FramerMotionNavBar";
+import ThemeContextProvider from "@/app/contexts/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[120vh] flex flex-col`}
       >
-        <FramerMotionNavBar />
-        {children}
+        <ThemeContextProvider>
+          <FramerMotionNavBar />
+          {children}
+        </ThemeContextProvider>
       </body>
     </html>
   );

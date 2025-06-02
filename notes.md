@@ -149,7 +149,12 @@ There is no static cache; each request triggers a fresh server-side render and f
 
 
 **useOptimistic**
+Usage
+Optimistically updating forms
+
 **useActionState**
+Usage
+Using information returned by a form action
 const [state, formAction] = useActionState(createTicket, initState);
 
 //
@@ -164,6 +169,12 @@ const [state, formAction] = useActionState(createTicket, initState);
 
 
 **useTransition**
+Perform non-blocking updates with Actions
+Exposing action prop from components
+Displaying a pending visual state
+Preventing unwanted loading indicators
+Building a Suspense-enabled router
+Displaying an error to users with an error boundary
 const [isPending, startTransition] = useTransition();
 const router = useRouter();
 
@@ -184,4 +195,7 @@ console.log(res, "res");
 
 
 *useFormAction*
+Usage
+Display a pending state during form submission
+Read the form data being submitted
 - for actions outside forms like in buttons, stand alone inputs etc.
